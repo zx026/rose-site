@@ -1,0 +1,359 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --rose-red: #d41159;
+  --rose-pink: #ff1493;
+  --dark-pink: #a91850;
+  --light-pink: #ff69b4;
+  --stem-color: #2d5016;
+  --leaf-color: #3a7d1f;
+  --dark-bg: #1a1a2e;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--dark-bg) 0%, #16213e 100%);
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
+}
+
+.container {
+  perspective: 1000px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* =============== ROSE FLOWER =============== */
+.rose {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 300px;
+  animation: rose-bloom 3s ease-in-out forwards;
+}
+
+@keyframes rose-bloom {
+  0% {
+    transform: translateX(-50%) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* =============== STEM =============== */
+.stem {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 180px;
+  background: linear-gradient(to top, var(--stem-color), var(--leaf-color));
+  border-radius: 3px;
+  animation: stem-sway 3s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes stem-sway {
+  0%, 100% {
+    transform: translateX(-50%) rotateZ(-1deg);
+  }
+  50% {
+    transform: translateX(-50%) rotateZ(1deg);
+  }
+}
+
+/* =============== LEAVES =============== */
+.leaf {
+  position: absolute;
+  background: linear-gradient(135deg, var(--leaf-color) 0%, #5aa03a 100%);
+  border-radius: 50% 100% 50% 0;
+}
+
+.leaf-1 {
+  width: 35px;
+  height: 50px;
+  left: -25px;
+  top: 40px;
+  transform: rotateZ(-30deg);
+  animation: leaf-wave 2.5s ease-in-out infinite;
+}
+
+.leaf-2 {
+  width: 35px;
+  height: 50px;
+  right: -25px;
+  top: 80px;
+  transform: rotateZ(30deg) scaleX(-1);
+  animation: leaf-wave 2.5s ease-in-out infinite 0.3s;
+}
+
+.leaf-3 {
+  width: 30px;
+  height: 45px;
+  left: -20px;
+  top: 120px;
+  transform: rotateZ(-25deg);
+  animation: leaf-wave 2.5s ease-in-out infinite 0.6s;
+}
+
+.leaf-4 {
+  width: 30px;
+  height: 45px;
+  right: -20px;
+  top: 150px;
+  transform: rotateZ(25deg) scaleX(-1);
+  animation: leaf-wave 2.5s ease-in-out infinite 0.9s;
+}
+
+@keyframes leaf-wave {
+  0%, 100% {
+    transform: rotateZ(-1deg);
+  }
+  50% {
+    transform: rotateZ(1deg);
+  }
+}
+
+/* =============== PETALS =============== */
+.petals {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 160px;
+}
+
+.petal {
+  position: absolute;
+  background: radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, 0.4), var(--rose-red));
+  border-radius: 50% 50% 50% 0;
+  left: 50%;
+  top: 50%;
+  transform-origin: -80px 0;
+  box-shadow: inset -2px -2px 5px rgba(0, 0, 0, 0.3), 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* OUTER PETALS */
+.outer-petals {
+  animation: petals-rotate 4s ease-in-out infinite;
+}
+
+.outer-petals .petal {
+  width: 60px;
+  height: 80px;
+  margin-left: -30px;
+  margin-top: -40px;
+  background: linear-gradient(135deg, var(--dark-pink) 0%, var(--rose-red) 50%, var(--rose-pink) 100%);
+  opacity: 0.9;
+}
+
+.outer-petals .petal-1 { transform: translate(-50%, -50%) rotateZ(0deg) rotateY(45deg); }
+.outer-petals .petal-2 { transform: translate(-50%, -50%) rotateZ(45deg) rotateY(45deg); }
+.outer-petals .petal-3 { transform: translate(-50%, -50%) rotateZ(90deg) rotateY(45deg); }
+.outer-petals .petal-4 { transform: translate(-50%, -50%) rotateZ(135deg) rotateY(45deg); }
+.outer-petals .petal-5 { transform: translate(-50%, -50%) rotateZ(180deg) rotateY(45deg); }
+.outer-petals .petal-6 { transform: translate(-50%, -50%) rotateZ(225deg) rotateY(45deg); }
+.outer-petals .petal-7 { transform: translate(-50%, -50%) rotateZ(270deg) rotateY(45deg); }
+.outer-petals .petal-8 { transform: translate(-50%, -50%) rotateZ(315deg) rotateY(45deg); }
+
+/* MIDDLE PETALS */
+.middle-petals {
+  animation: petals-rotate 3.5s ease-in-out infinite reverse;
+}
+
+.middle-petals .petal {
+  width: 50px;
+  height: 70px;
+  margin-left: -25px;
+  margin-top: -35px;
+  background: linear-gradient(135deg, var(--rose-red) 0%, var(--rose-pink) 100%);
+  opacity: 0.95;
+}
+
+.middle-petals .petal-1 { transform: translate(-50%, -50%) rotateZ(25deg) rotateY(60deg); }
+.middle-petals .petal-2 { transform: translate(-50%, -50%) rotateZ(73deg) rotateY(60deg); }
+.middle-petals .petal-3 { transform: translate(-50%, -50%) rotateZ(121deg) rotateY(60deg); }
+.middle-petals .petal-4 { transform: translate(-50%, -50%) rotateZ(169deg) rotateY(60deg); }
+.middle-petals .petal-5 { transform: translate(-50%, -50%) rotateZ(217deg) rotateY(60deg); }
+.middle-petals .petal-6 { transform: translate(-50%, -50%) rotateZ(265deg) rotateY(60deg); }
+.middle-petals .petal-7 { transform: translate(-50%, -50%) rotateZ(313deg) rotateY(60deg); }
+
+/* INNER PETALS */
+.inner-petals {
+  animation: petals-rotate 3s ease-in-out infinite;
+}
+
+.inner-petals .petal {
+  width: 40px;
+  height: 60px;
+  margin-left: -20px;
+  margin-top: -30px;
+  background: linear-gradient(135deg, var(--rose-pink) 0%, var(--light-pink) 100%);
+  opacity: 1;
+}
+
+.inner-petals .petal-1 { transform: translate(-50%, -50%) rotateZ(0deg) rotateY(80deg); }
+.inner-petals .petal-2 { transform: translate(-50%, -50%) rotateZ(72deg) rotateY(80deg); }
+.inner-petals .petal-3 { transform: translate(-50%, -50%) rotateZ(144deg) rotateY(80deg); }
+.inner-petals .petal-4 { transform: translate(-50%, -50%) rotateZ(216deg) rotateY(80deg); }
+.inner-petals .petal-5 { transform: translate(-50%, -50%) rotateZ(288deg) rotateY(80deg); }
+
+@keyframes petals-rotate {
+  0%, 100% {
+    transform: translateX(-50%) rotateZ(0deg);
+  }
+  50% {
+    transform: translateX(-50%) rotateZ(5deg);
+  }
+}
+
+/* =============== ROSE CENTER =============== */
+.rose-center {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: radial-gradient(circle at 30% 30%, var(--light-pink), var(--dark-pink));
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 
+    inset -2px -2px 5px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(212, 17, 89, 0.8);
+  z-index: 10;
+}
+
+/* =============== THORNS =============== */
+.thorns {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 180px;
+}
+
+.thorn {
+  position: absolute;
+  background: var(--stem-color);
+  border-radius: 50%;
+}
+
+.thorn-1 {
+  width: 4px;
+  height: 12px;
+  left: -8px;
+  top: 30px;
+  transform: rotateZ(-45deg);
+}
+
+.thorn-2 {
+  width: 4px;
+  height: 12px;
+  right: -8px;
+  top: 70px;
+  transform: rotateZ(45deg);
+}
+
+.thorn-3 {
+  width: 4px;
+  height: 12px;
+  left: -8px;
+  top: 110px;
+  transform: rotateZ(-45deg);
+}
+
+.thorn-4 {
+  width: 4px;
+  height: 12px;
+  right: -8px;
+  top: 150px;
+  transform: rotateZ(45deg);
+}
+
+/* =============== FLOATING PARTICLES =============== */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--light-pink);
+  border-radius: 50%;
+  filter: blur(0.5px);
+  box-shadow: 0 0 8px var(--rose-pink);
+}
+
+.particle-1 {
+  left: 20%;
+  top: 20%;
+  animation: float 5s ease-in-out infinite;
+}
+
+.particle-2 {
+  left: 30%;
+  top: 40%;
+  animation: float 6s ease-in-out infinite 1s;
+}
+
+.particle-3 {
+  left: 70%;
+  top: 30%;
+  animation: float 7s ease-in-out infinite 2s;
+}
+
+.particle-4 {
+  left: 80%;
+  top: 50%;
+  animation: float 8s ease-in-out infinite 1.5s;
+}
+
+.particle-5 {
+  left: 50%;
+  top: 70%;
+  animation: float 6.5s ease-in-out infinite 2.5s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) translateX(20px);
+    opacity: 0;
+  }
+}
+
+/* =============== PAGE LOAD =============== */
+.not-loaded * {
+  animation-play-state: paused !important;
+}
